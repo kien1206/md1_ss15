@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin sinh viên</title>
+    <style>
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Nhập thông tin sinh viên</h1>
+    <label for="studentCount">Số lượng sinh viên:</label>
+    <input type="number" id="studentCount" name="studentCount" min="1"><br>
+    <button type="button" onclick="createStudentInputs()">Tạo biểu mẫu nhập liệu</button>
+
+    <div id="studentForms"></div>
+    <button type="button" onclick="submitStudents()">Submit</button>
+
+    <h2>Danh sách sinh viên</h2>
+    <ul id="studentList"></ul>
+
+    <script>
+        function createStudentInputs() {
+            const studentCount = document.getElementById('studentCount').value;
+            const studentForms = document.getElementById('studentForms');
+            studentForms.innerHTML = '';
+
+            for (let i = 0; i < studentCount; i++) {
+                studentForms.innerHTML += `
+                    <h3>Sinh viên ${i + 1}</h3>
+                    <label for="id_${i}">ID:</label>
+                    <input type="text" id="id_${i}" name="id_${i}"><br>
+                    <label for="name_${i}">Name:</label>
+                    <input type="text" id="name_${i}" name="name_${i}"><br>
+                `;
+            }
+        }
+
+        function submitStudents() {
+            const studentCount = document.getElementById('studentCount').value;
+            const students = [];
+
+            for (let i = 0; i < studentCount; i++) {
+                const id = document.getElementById(`id_${i}`).value;
+                const name = document.getElementById(`name_${i}`).value;
+
+                // Khai báo đối tượng sinh viên
+                const student = {
+                    id: id,
+                    name: name
+                };
+
+                // Thêm đối tượng sinh viên vào mảng
+                students.push(student);
+            }
+
+            // Hiển thị danh sách sinh viên ra màn hình
+            const studentList = document.getElementById('studentList');
+            studentList.innerHTML = '';
+
+            students.forEach((student, index) => {
+                studentList.innerHTML += `
+                    <li>
+                        <strong>Sinh viên ${index + 1}:</strong> 
+                        ID: ${student.id}, 
+                        Name: ${student.name}
+                    </li>
+                `;
+            });
+        }
+    </script>
+</body>
+</html>

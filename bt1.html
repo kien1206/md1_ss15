@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin cá nhân</title>
+    <style>
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Nhập thông tin cá nhân</h1>
+    <form id="infoForm">
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id"><br>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br>
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone"><br>
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address"><br>
+        <button type="button" onclick="submitInfo()">Submit</button>
+    </form>
+
+    <h2>Thông tin đã nhập</h2>
+    <p id="output"></p>
+
+    <script>
+        function submitInfo() {
+            // Lấy giá trị từ các trường nhập liệu
+            const id = document.getElementById('id').value;
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+
+            // Khai báo đối tượng information
+            const information = {
+                id: id,
+                name: name,
+                phone: phone,
+                address: address
+            };
+
+            // Hiển thị thông tin ra màn hình
+            const output = `
+                <strong>ID:</strong> ${information.id}<br>
+                <strong>Name:</strong> ${information.name}<br>
+                <strong>Phone:</strong> ${information.phone}<br>
+                <strong>Address:</strong> ${information.address}
+            `;
+            document.getElementById('output').innerHTML = output;
+        }
+    </script>
+</body>
+</html>

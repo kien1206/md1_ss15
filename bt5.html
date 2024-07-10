@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm kiếm sách theo tác giả</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .book {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tìm kiếm sách theo tác giả</h1>
+    <button onclick="searchBookByAuthor()">Tìm kiếm sách</button>
+    <div id="result"></div>
+
+    <script>
+        // Khai báo mảng các đối tượng Book
+        const books = [
+            { author: "Nguyễn Nhật Ánh", name: "Cho Tôi Xin Một Vé Đi Tuổi Thơ" },
+            { author: "Nguyễn Ngọc Tư", name: "Cánh Đồng Bất Tận" },
+            { author: "Nguyễn Minh Châu", name: "Chiếc Thuyền Ngoài Xa" },
+            { author: "Bảo Ninh", name: "Nỗi Buồn Chiến Tranh" },
+            { author: "Nguyễn Huy Thiệp", name: "Tướng Về Hưu" }
+        ];
+
+        function searchBookByAuthor() {
+            // Yêu cầu người dùng nhập tên tác giả
+            const authorName = prompt("Nhập tên tác giả:");
+
+            // Tìm kiếm sách theo tác giả
+            const foundBooks = books.filter(book => book.author.toLowerCase() === authorName.toLowerCase());
+
+            // Hiển thị kết quả
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = ''; // Xóa kết quả cũ nếu có
+
+            if (foundBooks.length > 0) {
+                foundBooks.forEach(book => {
+                    resultDiv.innerHTML += `<div class="book">
+                        <strong>Tác giả:</strong> ${book.author}<br>
+                        <strong>Tên sách:</strong> ${book.name}
+                    </div>`;
+                });
+            } else {
+                resultDiv.innerHTML = "Không tìm thấy sách";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sắp xếp danh sách sản phẩm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .product {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Danh sách sản phẩm</h1>
+    <div id="productList"></div>
+
+    <script>
+        // Khai báo mảng các đối tượng Product
+        const products = [
+            { id: 1, name: "iPhone 12", price: 20000000 },
+            { id: 2, name: "iPhone 11", price: 10000000 },
+            { id: 3, name: "samsung note 10", price: 50000000 }
+        ];
+
+        // Hàm sắp xếp danh sách products tăng dần theo price
+        function sortProductsByPrice(products) {
+            return products.sort((a, b) => a.price - b.price);
+        }
+
+        // Hàm hiển thị danh sách sản phẩm
+        function displayProducts(products) {
+            const productList = document.getElementById('productList');
+            productList.innerHTML = ''; // Xóa nội dung cũ nếu có
+
+            products.forEach(product => {
+                productList.innerHTML += `<div class="product">
+                    <strong>ID:</strong> ${product.id}<br>
+                    <strong>Name:</strong> ${product.name}<br>
+                    <strong>Price:</strong> ${product.price}
+                </div>`;
+            });
+        }
+
+        // Sắp xếp và hiển thị danh sách sản phẩm
+        const sortedProducts = sortProductsByPrice(products);
+        displayProducts(sortedProducts);
+    </script>
+</body>
+</html>
